@@ -1,0 +1,108 @@
+---
+apic:
+
+  access_policies:
+    mcp: # To overrode NAC default values
+      admin_state: true
+      per_vlan: true
+
+
+  fabric_policies:
+    apic_conn_pref: ooband
+    fabric_bgp_as: 65001
+    fabric_bgp_rr:
+    - 101
+    - 102
+    aaa:
+      management_settings:
+        password_strength_check: true
+        password_strength_profile: {}
+
+    ###
+    # CooP Authentication method
+    coop_group_policy: strict
+
+    ###
+    # Date and time
+    date_time_format:
+      display_format: local
+      timezone: p0_UTC
+      show_offset: true
+    ip_aging: true
+
+    ###
+    # Precision Time Protocol settings
+    ptp:
+      admin_state: false
+
+    ###
+    # Banners
+    banners:
+      apic_gui_alias: APIC GUI BANNER
+      apic_gui_banner_url: APIC GUI BANNER URL
+      apic_cli_banner: Application Policy Infrastructure Controller
+      switch_cli_banner: SWITCH CLI BANNER
+      escape_html: false
+
+    err_disabled_recovery:
+      interval: 300
+      mcp_loop: false
+      ep_move: false
+      bpdu_guard: false
+    ep_loop_protection:
+      admin_state: false
+      detection_interval: 60
+      detection_multiplier: 4
+      port_disable: true
+      bd_learn_disable: false
+    rogue_ep_control:
+      admin_state: true
+      detection_interval: 60
+      detection_multiplier: 6
+      hold_interval: 1800
+
+    ###
+    # Infra DSCP Translation enables preservation of COS values
+    # between ACI pods by mapping DSCP and COS values
+    infra_dscp_translation_policy:
+      admin_state: true
+      control_plane: CS0
+      level_1: CS1
+      level_2: CS2
+      level_3: CS3
+      level_4: AF11
+      level_5: AF21
+      level_6: AF31
+      policy_plane: CS4
+      span: CS5
+      traceroute: CS6
+
+    ###
+    # Underlay ISIS
+    #
+    fabric_isis_bfd: false
+    fabric_isis_redistribute_metric: 32
+
+    ###
+    # Default interface mtu
+    l2_port_mtu: 9000
+
+    ###
+    # System settings found under
+    # System > System settings > Fabric wide settings
+    global_settings:
+      disable_remote_endpoint_learn: false
+      enforce_subnet_check: true
+      overlapping_vlan_validation: false
+      domain_validation: true
+      opflex_authentication: true
+      remote_leaf_direct: true
+      reallocate_gipo: false
+
+    ###
+    # Disabled down lnk port aíf all uplinks goes down
+    port_tracking:
+      admin_state: true
+      delay: 120
+      min_links: 0
+      include_apic: true
