@@ -1,2 +1,2 @@
 # Networking
-Networking configuartin adn automation knowledgebase
+Networking configuration and automation knowledgebase
